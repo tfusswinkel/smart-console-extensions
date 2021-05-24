@@ -11,14 +11,14 @@ namespace BlazorCpSmxInteractions
     // This class can be registered as scoped DI service and then injected into Blazor
     // components for use.
 
-    public class ExampleJsInterop : IAsyncDisposable
+    public class SmartConsoleInteractions : IAsyncDisposable
     {
         private readonly Lazy<Task<IJSObjectReference>> moduleTask;
 
-        public ExampleJsInterop(IJSRuntime jsRuntime)
+        public SmartConsoleInteractions(IJSRuntime jsRuntime)
         {
             moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-               "import", "./_content/BlazorCpSmxInteractions/exampleJsInterop.js").AsTask());
+               "import", "./_content/BlazorCpSmxInteractions/smartConsoleInteractionsJsInterop.js").AsTask());
         }
 
         public async ValueTask<string> Prompt(string message)
