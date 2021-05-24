@@ -31,4 +31,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="smart-console-interactions\" />
+  </ItemGroup>
+
 </Project>
