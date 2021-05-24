@@ -20,7 +20,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="QueryManager.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="smart-console-interactions\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="QueryManager.cs" />
   </ItemGroup>
 
   
