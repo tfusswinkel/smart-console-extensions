@@ -11,12 +11,16 @@
     <FileVersion>1.0.52.0</FileVersion>
     <RepositoryUrl>https://github.com/tfusswinkel/smart-console-extensions.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.52</Version>
+    <Version>1.0.52-alpha</Version>
     <Product>Blazor CP SMX Interactions</Product>
     <PackageTags>Blazor;SMX;SmartConsole Extensions;Check Point;RCL;Razor Class Library</PackageTags>
-    <Copyright>Copyright ©  2021 Torsten Fusswinkel</Copyright>
+    <Copyright>Copyright (c) Torsten Fusswinkel 2021</Copyright>
     <NeutralLanguage>English</NeutralLanguage>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="smart-console-interactions\tsconfig.json" />
+  </ItemGroup>
 
   
   <ItemGroup>
@@ -32,7 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="smart-console-interactions\" />
+    <TypeScriptCompile Include="smart-console-interactions\tsconfig.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </TypeScriptCompile>
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,21 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
+    "noImplicitAny": false,
+    "noEmitOnError": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "target": "es2019",
+    "module": "ESNext",
     "declaration": true,
-    "outDir": "./lib",
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "../wwwroot/js"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "wwwroot"
+  ]
 }
