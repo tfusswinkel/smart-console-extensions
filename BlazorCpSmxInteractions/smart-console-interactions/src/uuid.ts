@@ -1,6 +1,6 @@
 declare var DotNet: any
 
 
-export default function uuidv2() {
+export default function uuidv4() {
     return DotNet.invokeMethod('BlazorCpSmxInteractions', 'DotNetUuid');
 }

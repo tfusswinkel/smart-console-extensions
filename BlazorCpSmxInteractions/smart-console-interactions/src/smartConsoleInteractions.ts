@@ -31,7 +31,7 @@
 
 import ExtensionInteractionSubscription from './extensionInteractionSubscription.js';
 import ExtensionInvoker from './extensionInvoker.js';
-import uuidv2 from './uuid.js';
+import uuidv4 from './uuid.js';
 
 const getContextCommand = 'get-context';
 const requestCommitCommand = 'request-commit';
@@ -137,5 +137,5 @@ export default class SmartConsoleInteractions {
 }
 
 export function uuid(options: any = undefined, buf: any = undefined, offset: any = undefined) {
-    return uuidv2();
+    return uuidv4();
 }

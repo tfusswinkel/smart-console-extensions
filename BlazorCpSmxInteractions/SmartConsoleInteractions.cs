@@ -191,9 +191,9 @@ namespace BlazorCpSmxInteractions
         [JSInvokable]
         public static string DotNetUuid()
         {
-            var uuid = Guid.NewGuid().ToString();
+            var uuidv4 = Guid.NewGuid().ToString();
 
-            return uuid;
+            return uuidv4;
         }
 
 
