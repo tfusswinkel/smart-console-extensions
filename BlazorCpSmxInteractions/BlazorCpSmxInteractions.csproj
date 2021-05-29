@@ -7,11 +7,11 @@
     <Description>A Razor Class Library (RCL) to interact with Check Point SmartConsole Extensions (SMX) Platform for Blazor WebAssembly Apps.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyVersion>1.0.100.0</AssemblyVersion>
-    <FileVersion>1.0.100.0</FileVersion>
+    <AssemblyVersion>1.0.152.0</AssemblyVersion>
+    <FileVersion>1.0.152.0</FileVersion>
     <RepositoryUrl>https://github.com/tfusswinkel/smart-console-extensions.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.100-alpha</Version>
+    <Version>1.0.152-alpha</Version>
     <Product>Blazor CP SMX Interactions</Product>
     <PackageTags>Blazor;SMX;SmartConsole Extensions;Check Point;RCL;Razor Class Library</PackageTags>
     <Copyright>Copyright (c) Torsten Fusswinkel 2021</Copyright>
@@ -30,7 +30,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.6" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.2.4">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.3.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
