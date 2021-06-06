@@ -1,0 +1,77 @@
+﻿@page "/"
+@page "/index.html"
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+
+<h1>Hello World</h1>
+@if (jsonTreeHtml == null)
+{
+    <p id="@subscribereId"><em>Loading...</em></p>
+}
+else
+{
+    <div id="example">@((MarkupString)jsonTreeHtml)</div>
+}
+
+
+@code{
+    // prefix id with 'id_' to make sure id's don't start with a number or other invalid character
+    // add Guid to ensure unique-ness but remove '-' as they are invalid characters for JS property names
+    private string subscribereId = $"id_{Guid.NewGuid().ToString().Replace("-", "")}_callback";
+
+    private DotNetObjectReference<Index> dotNetObjectReference;
+    private IJSObjectReference smxJSObjectReference;
+
+    private string jsonTreeHtml = null;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            dotNetObjectReference = DotNetObjectReference.Create(this);
+
+
+            smxJSObjectReference = await JS.InvokeAsync<IJSObjectReference>("smxInterop");
+
+
+            if (await IsSmartConsoleMode())
+            {
+                await smxJSObjectReference.InvokeVoidAsync("smxInvoker", "get-context", null, subscribereId, dotNetObjectReference);
+            }
+            else
+            {
+                jsonTreeHtml = "Extension methods are not available.";
+
+                StateHasChanged();
+            }
+        }
+    }
+
+
+    [JSInvokable]
+    public async void SmxResultCallback(System.Text.Json.JsonElement smxJsonObject)
+    {
+        Console.WriteLine($"jsonElement content is {smxJsonObject.ToString()}");
+
+        jsonTreeHtml = await JS.InvokeAsync<string>("JSONTree.create", smxJsonObject);
+
+        StateHasChanged();
+    }
+
+
+    public async Task<bool> IsSmartConsoleMode()
+    {
+        return await JS.InvokeAsync<bool>("window.hasOwnProperty", "smxProxy");
+    }
+
+
+    public async ValueTask DisposeAsync()
+    {
+        await smxJSObjectReference.InvokeVoidAsync("smxDispose");
+        await smxJSObjectReference.DisposeAsync();
+        
+        dotNetObjectReference?.Dispose();
+    }
+}
