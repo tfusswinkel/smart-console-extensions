@@ -1,0 +1,88 @@
+﻿@page "/"
+@page "/index.html"
+@using System.Text.Json;
+@inject IJSRuntime JSRuntime;
+@inject SmartConsoleInteractions SmartConsoleInteractions;
+
+
+@if (interfaces == null)
+{
+    <p id="loader-text">@loaderText</p>
+}
+else
+{
+    <div id="scrollTable">
+        <table readonly="readonly" id="interfacesTable" style="visibility:visible">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Topology</th>
+                    <th>IP</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var simpleGatewayInterface in interfaces)
+            {
+                <tr>
+                    <td class="might-overflow column10"><div>@simpleGatewayInterface.SvgIcon<div class="name">@simpleGatewayInterface.Name</div></div></td>
+                    <td class="might-overflow column15">@simpleGatewayInterface.Topology</td>
+                    <td class="might-overflow column10">@simpleGatewayInterface.IP</td>
+                    <td class="might-overflow">@simpleGatewayInterface.Comments</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+}
+
+
+@code{
+    private string loaderText = "Loading...";
+
+    private SimpleGatewayInterface[] interfaces = null;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            try
+            {
+                var getContext = await SmartConsoleInteractions.GetContextObject();
+
+                Console.WriteLine($"getContext: {getContext}");
+
+
+                JsonElement interfacesNode = new JsonElement();
+
+                string interfacesValue = string.Empty;
+
+                if (getContext.TryGetProperty("event", out var eventNode))
+                    if (eventNode.TryGetProperty("objects", out var objectsNode))
+                        if (objectsNode.EnumerateArray().FirstOrDefault().ValueKind != JsonValueKind.Undefined && objectsNode.EnumerateArray().First().TryGetProperty("type", out var typeNode))
+                        {
+                            var typeValue = typeNode.GetString();
+
+
+                            if (typeValue == "simple-gateway")
+                            {
+                                objectsNode.EnumerateArray().First().TryGetProperty("interfaces", out interfacesNode);
+
+                                interfaces = ShowSimpleGatewayInterfaces.GetInterfaces(interfacesNode);
+                            }
+                            else
+                            {
+                                throw new Exception("This extension supports only simple gateway objects");
+                            }
+                        }
+            }
+            catch (Exception error)
+            {
+                loaderText = error.Message;
+            }
+
+            StateHasChanged();
+        }
+    }
+}
