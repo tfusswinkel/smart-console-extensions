@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 
-namespace ShowGatewaysInterfaces
+namespace BlazorCpSmxInteractions
 {
     public class Colors
     {
