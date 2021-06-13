@@ -4,7 +4,7 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace hello_world
+namespace HelloWorld
 {
     public class Program
     {

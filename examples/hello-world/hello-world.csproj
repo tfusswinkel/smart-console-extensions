@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>HelloWorld</RootNamespace>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/tfusswinkel/smart-console-extensions/tree/main/examples/hello-world</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tfusswinkel/smart-console-extensions.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Version>1.0.52</Version>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
