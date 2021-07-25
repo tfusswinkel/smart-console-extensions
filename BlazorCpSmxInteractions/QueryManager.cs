@@ -286,6 +286,21 @@ namespace BlazorCpSmxInteractions
         /// <returns>Task object</returns>
         public async ValueTask<JsonElement?> GetTask(string uid, DetailsLevel detailsLevel = DetailsLevel.Standard, bool wait = true)
         {
+            var result = await GetTaskWithTaskStatus(uid, detailsLevel, wait);
+
+            return result.TaskObject;
+        }
+
+
+        /// <summary>
+        /// Retrieve task by task uid
+        /// </summary>
+        /// <param name="uid">object uid</param>
+        /// <param name="detailsLevel">details level</param>
+        /// <param name="wait">wait</param>
+        /// <returns>A Tuple with Task object and TaskStatus</returns>
+        public async ValueTask<(JsonElement? TaskObject, TaskStatus? TaskStatusCode)> GetTaskWithTaskStatus(string uid, DetailsLevel detailsLevel = DetailsLevel.Standard, bool wait = true)
+        {
             var queryParams = new Dictionary<string, string>()
             {
                 { "task-id", uid},
@@ -311,15 +326,28 @@ namespace BlazorCpSmxInteractions
                     taskResult = CheckTaskResult(await GetTaskInternal(queryRequestParamsJsonElement), out status);
                 }
 
+
+                TaskStatus? taskStatusCode = null;
+
+                foreach (var taskStatusKey in taskStatusReturnStrings.Keys)
+                {
+                    if (status == taskStatusReturnStrings[taskStatusKey])
+                    {
+                        taskStatusCode = taskStatusKey;
+                        break;
+                    }
+                }
+
+
                 await Done.InvokeAsync();  // Notify the subscriber
 
-                return taskResult;
+                return (taskResult, taskStatusCode);
             }
             catch (Exception error)
             {
                 Console.Error.WriteLine("Failed to get task (" + uid + ") - " + error);
 
-                return null;
+                return (null, null);
             }
         }
 
