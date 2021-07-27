@@ -49,8 +49,8 @@ namespace BlazorCpSmxInteractions
 
         private static Dictionary<DetailsLevel, string> detailsLevelParamStrings = new Dictionary<DetailsLevel, string>()
         {
-            { DetailsLevel.Full, "standard" },
-            { DetailsLevel.Standard, "full" },
+            { DetailsLevel.Standard, "standard" },
+            { DetailsLevel.Full, "full" },
             { DetailsLevel.UID, "uid" }
         };
 
@@ -132,7 +132,7 @@ namespace BlazorCpSmxInteractions
         /// <param name="type">object type</param>
         /// <param name="detailsLevel">details level</param>
         /// <returns>List of objects</returns>
-        public async ValueTask<JsonElement?> GetObjectsByName(string name, string type, DetailsLevel detailsLevel = DetailsLevel.Standard)
+        public async ValueTask<JsonElement?> GetObjectsByName(string name, string type = defaultObjectType, DetailsLevel detailsLevel = DetailsLevel.Standard)
         {
             var queryParams = new GetObjectsByQueryParams()
             {
@@ -171,7 +171,7 @@ namespace BlazorCpSmxInteractions
         /// <param name="type">object type</param>
         /// <param name="detailsLevel">details level</param>
         /// <returns>List of objects</returns>
-        public async ValueTask<JsonElement?> GetObjectsByTag(string tag, string type, DetailsLevel detailsLevel = DetailsLevel.Standard)
+        public async ValueTask<JsonElement?> GetObjectsByTag(string tag, string type = defaultObjectType, DetailsLevel detailsLevel = DetailsLevel.Standard)
         {
             var queryParams = new GetObjectsByQueryParams()
             {
