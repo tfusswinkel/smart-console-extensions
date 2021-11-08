@@ -10,7 +10,7 @@ BlazorCpSmxInteractions is available via NuGet: [![NuGet](https://img.shields.io
 
 ### Prerequisites
 
-[.NET 5.0 SDK or later](https://dotnet.microsoft.com/download/dotnet/5.0)
+[.NET 6.0 SDK or later](https://dotnet.microsoft.com/download/dotnet/6.0)
 
 ### Create a Blazor WebAssembly App
 
@@ -85,5 +85,5 @@ dotnet publish -c Release
 
 ## Additional resources
 
-- [Introduction to ASP.NET Core Blazor](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-5.0)
+- [Introduction to ASP.NET Core Blazor](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-6.0)
 - [SmartConsole Extension Developer Guide](https://sc1.checkpoint.com/documents/SmartConsole/Extensions/index.html?ref=git)
