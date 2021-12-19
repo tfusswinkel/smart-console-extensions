@@ -7,13 +7,13 @@
     <PackageProjectUrl>https://github.com/tfusswinkel/smart-console-extensions/tree/main/examples/hello-world</PackageProjectUrl>
     <RepositoryUrl>https://github.com/tfusswinkel/smart-console-extensions.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.152</Version>
+    <Version>1.0.454</Version>
     <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.1" PrivateAssets="all" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
 
